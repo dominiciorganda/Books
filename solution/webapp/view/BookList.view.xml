@@ -1,0 +1,108 @@
+<mvc:View controllerName="org.ubb.books.controller.Books" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m">
+	<Page title="{i18n>homePageTitle}">
+		<Table id="idBooksTable" items="{
+			path: '/BookSet',
+			sorter: {
+				path: 'Title'
+			}
+		}" growing="true" growingThreshold="10" mode="SingleSelectLeft" inset="false" selectionChange="onSelect">
+
+			<headerToolbar>
+				<Toolbar>
+					<content>
+						<Button text="Delete" press="delete" />
+						<Button text="Borrowed" press="borrow" />
+						<Button text="Search books" press="search" />
+					</content>
+				</Toolbar>
+			</headerToolbar>
+
+			<columns>
+				<Column>
+					<Text text="Title" />
+				</Column>
+				<Column>
+					<Text text="Author" />
+				</Column>
+				<Column>
+					<Text text="Published on" />
+				</Column>
+				<Column>
+					<Text text="Language" />
+				</Column>
+				<Column>
+					<Text text="Available books" />
+				</Column>
+				<Column>
+					<Text text="Total books" />
+				</Column>
+				<Column>
+					<Text text="Created on" />
+				</Column>
+				<Column>
+					<Text text="Created by" />
+				</Column>
+				<Column>
+					<Text text="Changed on" />
+				</Column>
+				<Column>
+					<Text text="Changed by" />
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<ObjectIdentifier title="{Title}" text="{Isbn}" />
+						<Text text="{Author}" />
+						<Text text="{
+							path: 'DatePublished',
+							type: 'sap.ui.model.type.Date'
+               			}" />
+						<Text text="{Language}" />
+						<Text text="{= parseInt(${BooksAvailable}) }" />
+						<Text text="{= parseInt(${TotalNumberBooks}) }" />
+						<Text text="{
+							path: 'CreatedOn',
+							type: 'sap.ui.model.type.Date'
+               			}" />
+						<Text text="{CreatedBy}" />
+						<Text text="{
+							path: 'ChangedOn',
+							type: 'sap.ui.model.type.Date'
+               			}" />
+						<Text text="{ChangedBy}" />
+
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+
+		<VBox xmlns="sap.m" wrap="Wrap" renderType="Bare" class="sapUiSmallMargin">
+
+			<Input id="isbn" description="Isbn" valueLiveUpdate="true" width="50%" />
+			<Input id="author" description="Author" valueLiveUpdate="true" width="50%" />
+			<Input id="title" description="Title" valueLiveUpdate="true" width="50%" />
+			<DatePicker id="datepublished" placeholder="Publish date" valueLiveUpdate="true" width="50%" valueFormat="yyyy-MM-ddTHH:mm:ss" />
+			<Input id="language" description="Language" valueLiveUpdate="true" width="50%" />
+			<Input id="available" description="Available" valueLiveUpdate="true" type="Number" width="50%" />
+			<Input id="total" description="Total" valueLiveUpdate="true" type="Number" width="50%" />
+		</VBox>
+		<HBox>
+			<items>
+				<FlexBox id="fb1" height="100px" alignItems="Center" width="200px" justifyContent="SpaceAround">
+					<items>
+						<Button text="Create" press="create" />
+					</items>
+				</FlexBox>
+				<FlexBox id="fb2" justifyContent="Center" height="100px" alignItems="Center" width="200px">
+					<items>
+						<Button text="Update" press="update" />
+					</items>
+				</FlexBox>
+
+			</items>
+		</HBox>
+
+
+	</Page>
+</mvc:View>
